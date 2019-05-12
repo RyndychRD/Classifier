@@ -44,7 +44,7 @@
      <string>Выберите признак</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_featureDelete_featureChoose_featurePossibleDefinition">
+   <widget class="QComboBox" name="comboBox_featureChoose_featurePossibleDefinition">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -112,18 +112,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioBut_dimensional_featurePossibleDefinition">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Размерное значение</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QRadioButton" name="radioBut_logic_featurePossibleDefinition">
        <property name="font">
         <font>
@@ -132,6 +120,18 @@
        </property>
        <property name="text">
         <string>Логический</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radioBut_dimensional_featurePossibleDefinition">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Размерное значение</string>
        </property>
       </widget>
      </item>
