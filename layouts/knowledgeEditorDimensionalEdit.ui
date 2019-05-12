@@ -30,8 +30,8 @@
     <rect>
      <x>20</x>
      <y>250</y>
-     <width>102</width>
-     <height>30</height>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -95,6 +95,13 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="check_MinValue_dimensionalEdit">
+        <property name="text">
+         <string>Включительно</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -118,6 +125,13 @@
         </property>
         <property name="singleStep">
          <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="check_MaxValue_dimensionalEdit">
+        <property name="text">
+         <string>Включительно</string>
         </property>
        </widget>
       </item>

@@ -2,6 +2,7 @@ import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtWidgets
 
 import layouts.mainWindow as design
+
 import knowledgeEditor.knowledgeEditor as knowledgeEditor
 
 
