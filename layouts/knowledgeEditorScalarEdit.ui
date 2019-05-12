@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>327</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>400</width>
-    <height>300</height>
+    <height>327</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>250</y>
-     <width>102</width>
-     <height>30</height>
+     <y>290</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -47,7 +47,7 @@
    <property name="geometry">
     <rect>
      <x>280</x>
-     <y>250</y>
+     <y>290</y>
      <width>102</width>
      <height>30</height>
     </rect>
@@ -67,7 +67,7 @@
      <x>20</x>
      <y>20</y>
      <width>361</width>
-     <height>201</height>
+     <height>263</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -112,12 +112,12 @@
          </font>
         </property>
         <property name="text">
-         <string>Выберите значение для назначения</string>
+         <string>Список добавленных значений</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_setDefinition_scalarEdit"/>
+       <widget class="QTextEdit" name="text_added_scalarEdit"/>
       </item>
       <item>
        <widget class="QLabel" name="label_3">
@@ -133,6 +133,18 @@
       </item>
       <item>
        <widget class="QComboBox" name="comboBox_deleteDefiniton_scalarEdit"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_deleteScalarDef_scalarEdit">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Удалить</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
