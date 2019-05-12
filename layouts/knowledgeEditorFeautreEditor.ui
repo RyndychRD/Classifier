@@ -26,7 +26,7 @@
    <string>Редактор знаний. Признаки</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="button_classAdd_featureEditor">
+   <widget class="QPushButton" name="button_featureAdd_featureEditor">
     <property name="geometry">
      <rect>
       <x>540</x>
