@@ -1,33 +1,30 @@
 import pymysql.cursors
 
-# Подключиться к базе данных.
-connection = pymysql.connect(host='127.0.0.1',
-                             user='root',
-                             password='root',
-                             db='mydb',
-                             cursorclass=pymysql.cursors.DictCursor)
 
-print("connect successful!!")
+def addClass(line):
+    # Подключиться к базе данных.
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+            # SQL
+            sql = 'select count(*) from Classes'
+            # Выполнить команду запроса (Execute Query).
+            cursor.execute(sql)
+            rows=cursor.fetchall()
 
-try:
+            for row in rows:
+                print(row["count(*)"])
+            sql = "insert into Classes (idClasses,Class) Values ("+\
+                str(row["count(*)"])+",\'"+str(line)+ "\')"
+            cursor.execute(sql)
 
-    with connection.cursor() as cursor:
 
-        # SQL
-        sql = "SELECT * FROM Classes"
-
-        # Выполнить команду запроса (Execute Query).
-        cursor.execute(sql)
-
-        print("cursor.description: ", cursor.description)
-
-        print()
-
-        for row in cursor:
-            print(row)
-
-finally:
-    # Закрыть соединение (Close connection).
-    connection.close()
-    print("connect close")
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
 

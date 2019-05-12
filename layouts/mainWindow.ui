@@ -26,41 +26,41 @@
    <string>Классификатор элетротехники</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="button_detectClass_MainWindow">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>130</y>
-      <width>331</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Определить класс электротехники</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="buton_knowledgeEditor_MainWindow">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
+      <x>60</x>
       <y>50</y>
-      <width>331</width>
-      <height>51</height>
+      <width>441</width>
+      <height>141</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Редактор знаний</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="buton_knowledgeEditor_MainWindow">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Редактор знаний</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_detectClass_MainWindow">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Определить класс электротехники</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
