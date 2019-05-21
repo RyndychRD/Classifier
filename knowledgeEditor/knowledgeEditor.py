@@ -6,6 +6,7 @@ import layouts.knowledgeEditor as design
 import knowledgeEditor.knowledgeEditorClassEditor as classEditor
 import knowledgeEditor.knowledgeEditorFeatureEditor as featureEditor
 import knowledgeEditor.knowledgeEditorFeaturePossibleDefinition as featurePossibleDef
+import knowledgeEditor.knowledgeEditorClassExplanation as classExplanation
 
 
 class knowledgeEditor(QtWidgets.QMainWindow, design.Ui_knowledgeEditor):
@@ -15,11 +16,17 @@ class knowledgeEditor(QtWidgets.QMainWindow, design.Ui_knowledgeEditor):
         self.show_classEditor = classEditor.classEditor(self)
         self.show_featureEditor = featureEditor.featureEditor(self)
         self.show_featurePossibleDef = featurePossibleDef.featurePossibleDefinition(self)
+        self.show_classExplanation = classExplanation.classExplanation(self)
 
         self.button_classEditor_knowledgeEditor.clicked.connect(self.goto_classEditor)
         self.button_featureEditor_knowledgeEditor.clicked.connect(self.goto_featureEditor)
         self.button_goBack_knowledgeEditor.clicked.connect(self.goto_return)
         self.button_featurePossibleDefinition_knowledgeEditor.clicked.connect(self.goto_featurePossibleDef)
+        self.button_classExplanation_knowledgeEditor.clicked.connect(self.goto_classExplanation)
+
+    def goto_classExplanation(self):
+        self.show_classExplanation.show()
+        self.hide()
 
     def goto_featurePossibleDef(self):
         self.show_featurePossibleDef.show()

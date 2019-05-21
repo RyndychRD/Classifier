@@ -17,6 +17,7 @@ class featureEditor(QtWidgets.QMainWindow, design.Ui_featureEditor):
         self.button_featureDelete_featureEditor.clicked.connect(self.deleteFeature)
 
     def updateData(self):
+        self.line_featureAdd_classEditor.clear()
         self.comboBox_featureDelete_featureEditor.clear()
         for row in self.getAllFeatures():
             self.comboBox_featureDelete_featureEditor.addItem(row["NameFeature"])

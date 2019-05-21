@@ -42,7 +42,7 @@ def addClass_classEditor(line):
         print("connect close")
 
 
-def showAllClasses_classEditor():
+def showAllClasses():
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='root',
@@ -55,8 +55,6 @@ def showAllClasses_classEditor():
             cursor.execute(sql)
             rows = cursor.fetchall()
             return rows
-
-
 
     except Exception as e:
         print("Exeception occured:{}".format(e))
@@ -120,7 +118,7 @@ def addFeature_featureEditor(line):
             last = 0
 
             for row in rows:
-                if row["idFeature"] > last:
+                if row["idFeature"] >= last:
                     last = row["idFeature"]
                 if line == row["NameFeature"]:
                     return False
@@ -130,7 +128,7 @@ def addFeature_featureEditor(line):
             # Выполнить команду запроса (Execute Query).
             cursor.execute(sql)
             rows = cursor.fetchone()
-            sql = "insert into Feature (idFeature,nameFeature) Values (" + str(rows["count(*)"] + 1) + ",'" + str(
+            sql = "insert into Feature (idFeature,nameFeature) Values (" + str(last + 1) + ",'" + str(
                 line) + "')"
             cursor.execute(sql)
             connection.commit()
@@ -436,6 +434,8 @@ def addLogicalFeatureDef(featureName, lineTrue, lineFalse):
 
 
 # -----------------------------------------------------------
+
+# IT ALSO DELETE PREVIOUS ROWS FOR THIS FEATURE!!!
 def addDimensionalFeatureDef(featureName, left, right, ifLeftIncluded=False, ifRightIncluded=False):
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
@@ -473,6 +473,137 @@ def addDimensionalFeatureDef(featureName, left, right, ifLeftIncluded=False, ifR
             cursor.execute(sql)
 
             connection.commit()
+
+
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+# -----------------------------------------------------------
+
+def addFeatureToClass_classExplanation(featureName, className):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+
+    try:
+        with connection.cursor() as cursor:
+
+            sql = 'select * from Feature_Class_pair'
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+
+            last = 0
+
+            for row in rows:
+                if row["idFeature_Class_pair"] > last:
+                    last = row["idFeature_Class_pair"]
+
+            # SQL
+            sqlForeignKeyFeature = "select idFeature from Feature where NameFeature = '" + featureName + "'"
+            # cursor.execute(sqlForeignKeyFeature)
+
+            # SQL
+            sqlForeignKeyClass = "select idClasses from Classes where Class = '" + className + "'"
+            # cursor.execute(sqlForeignKeyClass)
+
+            sql = "insert into Feature_Class_pair (idFeature_Class_pair,Classes_idClasses, Feature_idFeature)" \
+                  " Values (" + str(last + 1) + ",(" + sqlForeignKeyClass + "),(" + sqlForeignKeyFeature + "))"
+            cursor.execute(sql)
+
+            connection.commit()
+
+
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def deleteFeatureFromClass_classExplanation(featureName, className):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+
+    try:
+        with connection.cursor() as cursor:
+
+            # SQL
+            sqlForeignKeyFeature = "select idFeature from Feature where NameFeature = '" + featureName + "'"
+            cursor.execute(sqlForeignKeyFeature)
+            feature = cursor.fetchone()
+            # SQL
+            sqlForeignKeyClass = "select idClasses from Classes where Class = '" + className + "'"
+            cursor.execute(sqlForeignKeyClass)
+            classId = cursor.fetchone()
+
+            sqlPair = "select idFeature_Class_pair from Feature_Class_pair where " \
+                      "Classes_idClasses = " + str(classId["idClasses"]) + \
+                      " AND Feature_idFeature = " + str(feature["idFeature"])
+            cursor.execute(sqlPair)
+            pair = cursor.fetchone()
+            sql = "delete from Feature_Class_pair where idFeature_Class_pair=" + str(pair["idFeature_Class_pair"])
+
+            cursor.execute(sql)
+
+            connection.commit()
+
+
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def takeFeautureFromClass_classExplanation(className):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+
+    try:
+        with connection.cursor() as cursor:
+
+
+            # SQL
+            sqlForeignKeyClass = "select idClasses from Classes where Class = '" + className + "'"
+            # cursor.execute(sqlForeignKeyClass)
+
+            sql = "Select Feature_idFeature From Feature_Class_pair where Classes_idClasses = ("+sqlForeignKeyClass+")"
+            cursor.execute(sql)
+            features=cursor.fetchall()
+
+            result=[]
+
+            for row in features:
+                sql="Select NameFeature from Feature where idFeature = "+row["Feature_idFeature"]
+                cursor.execute(sql)
+                result.append(cursor.fetchone())
+
+            return result
+
 
 
 

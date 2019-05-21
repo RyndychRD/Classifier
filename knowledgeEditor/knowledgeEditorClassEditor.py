@@ -9,9 +9,7 @@ class classEditor(QtWidgets.QMainWindow, design.Ui_classEditor):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
-        self.showAllClasses()
-        for row in self.getAllClasses():
-            self.comboBox_classDelete_classEditor.addItem(row["Class"])
+        self.updateData()
 
         self.button_classAdd_classEditor.clicked.connect(self.addClass)
         self.button_goBack_classEditor.clicked.connect(self.goto_return)
@@ -25,6 +23,9 @@ class classEditor(QtWidgets.QMainWindow, design.Ui_classEditor):
         else:
             if not (db.addClass_classEditor(self.line_classAdd_classEditor.text())):
                 QMessageBox.question(self, "Error", "Class already exist", QMessageBox.Cancel)
+        self.updateData()
+
+    def updateData(self):
         self.comboBox_classDelete_classEditor.clear()
         for row in self.getAllClasses():
             self.comboBox_classDelete_classEditor.addItem(row["Class"])
@@ -33,14 +34,10 @@ class classEditor(QtWidgets.QMainWindow, design.Ui_classEditor):
     def deleteClass(self):
 
         db.deleteClass_classEditor(self.comboBox_classDelete_classEditor.currentText())
-
-        self.comboBox_classDelete_classEditor.clear()
-        for row in self.getAllClasses():
-            self.comboBox_classDelete_classEditor.addItem(row["Class"])
-        self.showAllClasses()
+        self.updateData()
 
     def getAllClasses(self):
-        return db.showAllClasses_classEditor()
+        return db.showAllClasses()
 
     def showAllClasses(self):
         rows = self.getAllClasses()
