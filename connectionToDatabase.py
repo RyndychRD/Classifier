@@ -42,6 +42,29 @@ def addClass_classEditor(line):
         print("connect close")
 
 
+def getClassIdFromClassName(className):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = 'select idClasses from Classes where Class = "' + className + '"'
+            cursor.execute(sql)
+            rows = cursor.fetchone()
+            return rows["idClasses"]
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
 def showAllClasses():
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
@@ -133,6 +156,29 @@ def addFeature_featureEditor(line):
             cursor.execute(sql)
             connection.commit()
             return True
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def getFeatureIdByFeatureName(feature):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = 'select idFeature from Feature where NameFeature = "' + feature + '"'
+            cursor.execute(sql)
+            rows = cursor.fetchone()
+            return rows["idFeature"]
 
     except Exception as e:
         print("Exeception occured:{}".format(e))
@@ -433,6 +479,7 @@ def addLogicalFeatureDef(featureName, lineTrue, lineFalse):
         print("connect close")
 
 
+
 # -----------------------------------------------------------
 
 # IT ALSO DELETE PREVIOUS ROWS FOR THIS FEATURE!!!
@@ -649,7 +696,7 @@ def takeTypeOfFeature(feature):
     print("connection established")
     try:
         with connection.cursor() as cursor:
-            sql = 'select Type from Feature where NameFeature = "'+feature+'"'
+            sql = 'select Type from Feature where NameFeature = "' + feature + '"'
             cursor.execute(sql)
             row = cursor.fetchone()
             return row
@@ -662,7 +709,8 @@ def takeTypeOfFeature(feature):
         connection.close()
         print("connect close")
 
-def setFeatureValue(featureName, className):
+
+def getidFeatureClass_pairByIdClassIdFeature(idClass, idFeature):
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='root',
@@ -671,11 +719,152 @@ def setFeatureValue(featureName, className):
     print("connection established")
     try:
         with connection.cursor() as cursor:
-            sql = 'select Type from Feature where NameFeature = "'+featureName+'"'
+            sql = 'select idFeature_Class_pair from Feature_Class_pair where Feature_idFeature = ' + str(idFeature) + \
+                  ' and Classes_idClasses = ' + str(idClass)
             cursor.execute(sql)
             row = cursor.fetchone()
-            return row
+            return row["idFeature_Class_pair"]
 
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def getIdFeatureClass_pairByClassNameFeatureName(featureName, className):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            idClass = getClassIdFromClassName(className)
+            idFeature = getFeatureIdByFeatureName(featureName)
+            featureClassPair = getidFeatureClass_pairByIdClassIdFeature(idClass, idFeature)
+            return featureClassPair
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def setScalar_FeatureClass_pair(scalar, idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "insert into ClassScalarlValue (Feature_Class_pair_idFeature_Class_pair,Value) " \
+                  "Values ((" + str(idFeatureClass) + '),"' + str(scalar) + '")'
+            cursor.execute(sql)
+            connection.commit()
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def deleteScalar_FeatureClass_pair(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "delete from ClassScalarlValue where Feature_Class_pair_idFeature_Class_pair=" + str(idFeatureClass)
+            cursor.execute(sql)
+            connection.commit()
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+def deleteLogical_FeatureClass_pair(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "delete from ClassLogicalValue where Feature_Class_pair_idFeature_Class_pair=" + str(idFeatureClass)
+            cursor.execute(sql)
+            connection.commit()
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+def getLogicalTrueFalse_FeatureClass_pair(featureId):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "Select * from LogicalValues where Feature_idFeature = " + str(featureId)
+            cursor.execute(sql)
+            row=cursor.fetchone()
+            return list(row["True_Value"]+row["False_Value"])
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+def setLogicalTrueFalse_FeatureClass_pair(idFeatureClass,trueValue,falseValue):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            if trueValue and not falseValue:
+                sql = "insert into ClassLogicalValue (Feature_Class_pair_idFeature_Class_pair,True_Value) " \
+                      "Values ((" + str(idFeatureClass) + '),"' + str(trueValue) + '")'
+            if not trueValue and falseValue:
+                sql = "insert into ClassLogicalValue (Feature_Class_pair_idFeature_Class_pair,False_Value) " \
+                      "Values ((" + str(idFeatureClass) + '),"' + str(falseValue) + '")'
+            if trueValue and falseValue:
+                sql = "insert into ClassLogicalValue (Feature_Class_pair_idFeature_Class_pair,True_Value,False_Value) " \
+                  "Values ((" + str(idFeatureClass) + '),"' + str(trueValue) + '","'+str(falseValue)+'")'
+
+            cursor.execute(sql)
+            connection.commit()
     except Exception as e:
         print("Exeception occured:{}".format(e))
 

@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 
 import layouts.knowledgeEditorLogicallEdit as design
@@ -11,6 +11,7 @@ class Logical(QtWidgets.QMainWindow, design.Ui_logicalEdit):
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.FeatureName = ""
         self.FeatureType = "Logical"
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
 
         self.button_goBack_logicalEdit.clicked.connect(self.goto_return)
         self.button_ok_logicalEdit.clicked.connect(self.save_and_return)
@@ -33,12 +34,13 @@ class Logical(QtWidgets.QMainWindow, design.Ui_logicalEdit):
         if textFalse == "":
             QMessageBox.question(self, "Error", "No false found", QMessageBox.Cancel)
             return
-        if textFalse==textTrue:
+        if textFalse == textTrue:
             QMessageBox.question(self, "Error", "True is the same as false", QMessageBox.Cancel)
             return
         db.addLogicalFeatureDef(self.FeatureName, textTrue, textFalse)
-        self.goto_return()
-
-    def goto_return(self):
         self.parent().show()
         self.close()
+
+    def goto_return(self):
+        QMessageBox.question(self, "Error", " You have to input values. No way back",
+                             QMessageBox.Cancel)

@@ -44,6 +44,7 @@ class knowledgeEditor(QtWidgets.QMainWindow, design.Ui_knowledgeEditor):
         self.hide()
 
     def goto_classFeatureDefinition(self):
+        self.show_classFeatureDefinition.inst()
         self.show_classFeatureDefinition.show()
         self.hide()
 

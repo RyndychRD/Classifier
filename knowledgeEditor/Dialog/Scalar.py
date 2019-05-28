@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 
 import layouts.knowledgeEditorScalarEdit as design
@@ -10,10 +10,12 @@ class Scalar(QtWidgets.QMainWindow, design.Ui_scalarEdit):
         super().__init__(parent)
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.FeatureName = ""
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
 
         self.button_goBack_scalarEdit.clicked.connect(self.goto_return)
         self.button_addDefinition_scalarEdit.clicked.connect(self.addDef)
         self.button_deleteScalarDef_scalarEdit.clicked.connect(self.deleteScalar)
+        self.button_ok_scalarEdit.clicked.connect(self.save_return)
 
     def updateData(self):
         self.showAllScalar()
@@ -41,12 +43,15 @@ class Scalar(QtWidgets.QMainWindow, design.Ui_scalarEdit):
             self.text_added_scalarEdit.append(row["Value"])
 
     def deleteScalar(self):
-        db.deleteScalarFeatureDef(self.FeatureName,self.comboBox_deleteDefiniton_scalarEdit.currentText())
+        db.deleteScalarFeatureDef(self.FeatureName, self.comboBox_deleteDefiniton_scalarEdit.currentText())
         self.updateData()
 
     def set_featureName(self, text):
         self.FeatureName = text
-
-    def goto_return(self):
+    def save_return(self):
         self.parent().show()
         self.close()
+
+    def goto_return(self):
+        QMessageBox.question(self, "Error", " You have to input values. No way back",
+                             QMessageBox.Cancel)

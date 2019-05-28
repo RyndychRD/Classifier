@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import QMessageBox
 
 import layouts.knowledgeEditorClassFeatureDefinition as design
 import connectionToDatabase as db
+import knowledgeEditor.Dialog.ScalarClassFeatureDef as ScalarEdit
+import knowledgeEditor.Dialog.LogicalClassFeatureDef as LogicalEdit
 
 
 class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefinition):
@@ -11,12 +13,17 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.featureOfClass = []
         self.inst()
+        self.show_ScalarEditor = ScalarEdit.Scalar(self)
+        self.show_LogicalEditor = LogicalEdit.Logical(self)
 
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.takeFeaturesFromClass)
         self.button_goBack_classFeatureDefinition.clicked.connect(self.goto_return)
+        self.comboBox_featureChoose_classFeatureDefinition.activated.connect(self.takeTypeOfFeature)
         self.button_ok_classFeatureDefinition.clicked.connect(self.goto_return)
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.showSetFeature)
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.showUnSetFeature)
+        self.button_featureSet_classFeatureDefinition_2.clicked.connect(self.setFeatureDef)
+        self.button_featureUnSet_classFeatureDefinition.clicked.connect(self.unsetFeatureDef)
 
     def inst(self):
         self.comboBox_classChoose_classFeatureDefinition.clear()
@@ -36,13 +43,46 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
             for row in features:
                 self.comboBox_featureChoose_classFeatureDefinition.addItem(row["NameFeature"])
             self.comboBox_featureChoose_classFeatureDefinition.setCurrentText(features[0]["NameFeature"])
-            self.takeTypeOfFeature(self.comboBox_featureChoose_classFeatureDefinition.currentText())
+            self.takeTypeOfFeature()
             return features
         else:
             return []
 
-    def showSetFeature(self):
+    def setFeatureDef(self):
+        featureType = self.takeTypeOfFeature()
+        if featureType == 1:
+            self.goto_ScalarEdit()
+        if featureType == 2:
+            self.goto_LogicalEdit()
+        if featureType == 3:
+            self.goto_DimensionalEdit()
+
+    def goto_ScalarEdit(self):
+        self.show_ScalarEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                    db.getIdFeatureClass_pairByClassNameFeatureName(
+                                        self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                        self.comboBox_classChoose_classFeatureDefinition.currentText()))
+        self.show_ScalarEditor.show()
+        self.hide()
+
+    def goto_LogicalEdit(self):
+        self.show_LogicalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                    db.getIdFeatureClass_pairByClassNameFeatureName(
+                                        self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                        self.comboBox_classChoose_classFeatureDefinition.currentText()))
+        self.show_LogicalEditor.show()
+        self.hide()
+
+
+    def goto_DimensionalEdit(self):
         print()
+
+    def unsetFeatureDef(self):
+        print()
+
+    def showSetFeature(self):
+
+        print("word")
 
     def showUnSetFeature(self):
         self.text_featureUnset_classFeatureDefinition.clear()
@@ -59,17 +99,20 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
     # if row["Type"] == 3:
     #     return 'Dimensional'
 
-    def takeTypeOfFeature(self, feature=""):
+    def takeTypeOfFeature(self):
         self.line_featureType_classFeatureDefinition.clear()
-        if not feature:
-            feature = self.comboBox_featureChoose_classFeatureDefinition.currentText()
+        feature = self.comboBox_featureChoose_classFeatureDefinition.currentText()
         featureType = db.takeTypeOfFeature(feature)
         if featureType['Type'] == 1:
             self.line_featureType_classFeatureDefinition.setText("Скалярный")
+            return 1
         if featureType['Type'] == 2:
             self.line_featureType_classFeatureDefinition.setText("Логический")
+            return 2
         if featureType['Type'] == 3:
             self.line_featureType_classFeatureDefinition.setText("Размерный")
+            return 3
+        return -1
 
     def goto_return(self):
         self.parent().show()
