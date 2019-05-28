@@ -61,19 +61,19 @@
     <string>ОК</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>371</width>
-     <height>191</height>
+     <x>50</x>
+     <y>40</y>
+     <width>321</width>
+     <height>161</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -81,32 +81,25 @@
          </font>
         </property>
         <property name="text">
-         <string>Введите начальное значение</string>
+         <string>Введите нижнее значение</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QDoubleSpinBox" name="spinBox_start_dimensionalEdit">
-        <property name="maximum">
-         <double>999999999.000000000000000</double>
+      <item>
+       <widget class="QDoubleSpinBox" name="spinbox_min">
+        <property name="decimals">
+         <number>3</number>
         </property>
         <property name="singleStep">
-         <double>0.100000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="check_MinValue_dimensionalEdit">
-        <property name="text">
-         <string>Включительно</string>
+         <double>0.001000000000000</double>
         </property>
        </widget>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
        <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
@@ -114,24 +107,17 @@
          </font>
         </property>
         <property name="text">
-         <string>Введите конечное значение</string>
+         <string>Введите верхнее значение</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QDoubleSpinBox" name="spinBox_end_dimensionalEdit">
-        <property name="maximum">
-         <double>999999999.000000000000000</double>
+      <item>
+       <widget class="QDoubleSpinBox" name="spinbox_max">
+        <property name="decimals">
+         <number>3</number>
         </property>
         <property name="singleStep">
-         <double>0.100000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="check_MaxValue_dimensionalEdit">
-        <property name="text">
-         <string>Включительно</string>
+         <double>0.001000000000000</double>
         </property>
        </widget>
       </item>

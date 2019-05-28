@@ -479,7 +479,6 @@ def addLogicalFeatureDef(featureName, lineTrue, lineFalse):
         print("connect close")
 
 
-
 # -----------------------------------------------------------
 
 # IT ALSO DELETE PREVIOUS ROWS FOR THIS FEATURE!!!
@@ -801,6 +800,7 @@ def deleteScalar_FeatureClass_pair(idFeatureClass):
         connection.close()
         print("connect close")
 
+
 def deleteLogical_FeatureClass_pair(idFeatureClass):
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
@@ -822,6 +822,7 @@ def deleteLogical_FeatureClass_pair(idFeatureClass):
         connection.close()
         print("connect close")
 
+
 def getLogicalTrueFalse_FeatureClass_pair(featureId):
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
@@ -833,8 +834,8 @@ def getLogicalTrueFalse_FeatureClass_pair(featureId):
         with connection.cursor() as cursor:
             sql = "Select * from LogicalValues where Feature_idFeature = " + str(featureId)
             cursor.execute(sql)
-            row=cursor.fetchone()
-            return list(row["True_Value"]+row["False_Value"])
+            row = cursor.fetchone()
+            return list(row["True_Value"] + row["False_Value"])
 
     except Exception as e:
         print("Exeception occured:{}".format(e))
@@ -844,7 +845,8 @@ def getLogicalTrueFalse_FeatureClass_pair(featureId):
         connection.close()
         print("connect close")
 
-def setLogicalTrueFalse_FeatureClass_pair(idFeatureClass,trueValue,falseValue):
+
+def setLogicalTrueFalse_FeatureClass_pair(idFeatureClass, trueValue, falseValue):
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='root',
@@ -861,10 +863,90 @@ def setLogicalTrueFalse_FeatureClass_pair(idFeatureClass,trueValue,falseValue):
                       "Values ((" + str(idFeatureClass) + '),"' + str(falseValue) + '")'
             if trueValue and falseValue:
                 sql = "insert into ClassLogicalValue (Feature_Class_pair_idFeature_Class_pair,True_Value,False_Value) " \
-                  "Values ((" + str(idFeatureClass) + '),"' + str(trueValue) + '","'+str(falseValue)+'")'
+                      "Values ((" + str(idFeatureClass) + '),"' + str(trueValue) + '","' + str(falseValue) + '")'
 
             cursor.execute(sql)
             connection.commit()
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def getDimensionalValueMinMax_FeatureClass_pair(featureId):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "Select * from DimensionalValues where Feature_idFeature = " + str(featureId)
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            left = row["LeftValue"]
+            right = row["RightValue"]
+            if row["LeftValueIncluded"] == 0:
+                left = left + 0.001
+            if row["RightValueIncluded"] == 0:
+                right = right - 0.001
+            result = []
+            result.append(left)
+            result.append(right)
+            return result
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def deleteDimensionalValue_FeatureClass_pair(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "delete from ClassDimensionalValue where Feature_Class_pair_idFeature_Class_pair=" + str(
+                idFeatureClass)
+            cursor.execute(sql)
+            connection.commit()
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def setDimensionalValue_FeatureClass_pair(idFeatureClass, minValue, maxValue):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "insert into ClassDimensionalValue (Feature_Class_pair_idFeature_Class_pair,LeftValue,RightValue) " \
+                  "Values ((" + str(idFeatureClass) + '),' + str(minValue).replace(',', '.') + ',' + str(
+                maxValue).replace(',', '.') + ')'
+
+            cursor.execute(sql)
+            connection.commit()
+
     except Exception as e:
         print("Exeception occured:{}".format(e))
 

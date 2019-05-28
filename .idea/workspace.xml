@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e54fde93-10f2-4ab1-b26a-3d1d8f9a902b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connectionToDatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/connectionToDatabase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledgeEditor/Dialog/Dimensional.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledgeEditor/Dialog/Dimensional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledgeEditor/Dialog/Logical.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledgeEditor/Dialog/Logical.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledgeEditor/knowledgeEditor.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledgeEditor/knowledgeEditor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/knowledgeEditor/knowledgeEditorClassFeatureDefinition.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledgeEditor/knowledgeEditorClassFeatureDefinition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/knowledgeEditorDimensionalEdit_classFeatureDef.ui" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/knowledgeEditorDimensionalEdit_classFeatureDef.ui" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +17,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/connectionToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="864" lean-forward="true" selection-start-line="864" selection-end-line="864" />
+            <state relative-caret-position="241">
+              <caret line="933" column="29" selection-start-line="933" selection-start-column="29" selection-end-line="933" selection-end-column="29" />
               <folding>
-                <element signature="e#14724#16308#0" />
                 <element signature="e#23880#24794#0" />
                 <element signature="e#24790#25875#0" />
               </folding>
@@ -32,11 +27,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/LogicalClassFeatureDef.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="41" column="80" selection-start-line="41" selection-start-column="80" selection-end-line="41" selection-end-column="80" />
+            <state relative-caret-position="343">
+              <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/DimensionalClassFeatureDef.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="547">
+              <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -47,10 +54,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/knowledgeEditor/knowledgeEditorClassFeatureDefinition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+            <state relative-caret-position="168">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainWindow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#56#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="-99">
               <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="66" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
@@ -95,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/Dimensional.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="445">
+              <caret line="33" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -139,9 +158,10 @@
         <option value="$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar.py" />
         <option value="$PROJECT_DIR$/knowledgeEditor/knowledgeEditor.py" />
         <option value="$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar_ClassFeatureDef.py" />
+        <option value="$PROJECT_DIR$/knowledgeEditor/Dialog/LogicalClassFeatureDef.py" />
         <option value="$PROJECT_DIR$/knowledgeEditor/knowledgeEditorClassFeatureDefinition.py" />
         <option value="$PROJECT_DIR$/connectionToDatabase.py" />
-        <option value="$PROJECT_DIR$/knowledgeEditor/Dialog/LogicalClassFeatureDef.py" />
+        <option value="$PROJECT_DIR$/knowledgeEditor/Dialog/DimensionalClassFeatureDef.py" />
       </list>
     </option>
   </component>
@@ -278,12 +298,12 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22021858" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22021858" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16954644" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.16954644" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -328,16 +348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="63" column="55" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainWindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -408,16 +418,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/Dimensional.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/layouts/knowledgeEditorScalarEdit_classFeatureDef2.ui">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -435,16 +435,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/ScalarClassFeatureDef.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -455,10 +445,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/LogicalClassFeatureDef.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/knowledgeEditor/knowledgeEditorClassFeatureDefinition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+        <state relative-caret-position="168">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -467,20 +477,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/connectionToDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="864" lean-forward="true" selection-start-line="864" selection-end-line="864" />
+        <state relative-caret-position="241">
+          <caret line="933" column="29" selection-start-line="933" selection-start-column="29" selection-end-line="933" selection-end-column="29" />
           <folding>
-            <element signature="e#14724#16308#0" />
             <element signature="e#23880#24794#0" />
             <element signature="e#24790#25875#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/LogicalClassFeatureDef.py">
+    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/Scalar.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="41" column="80" selection-start-line="41" selection-start-column="80" selection-end-line="41" selection-end-column="80" />
+        <state relative-caret-position="-99">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/Dimensional.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="33" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knowledgeEditor/Dialog/DimensionalClassFeatureDef.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

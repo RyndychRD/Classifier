@@ -5,6 +5,7 @@ import layouts.knowledgeEditorClassFeatureDefinition as design
 import connectionToDatabase as db
 import knowledgeEditor.Dialog.ScalarClassFeatureDef as ScalarEdit
 import knowledgeEditor.Dialog.LogicalClassFeatureDef as LogicalEdit
+import knowledgeEditor.Dialog.DimensionalClassFeatureDef as DimensionalEdit
 
 
 class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefinition):
@@ -15,6 +16,7 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
         self.inst()
         self.show_ScalarEditor = ScalarEdit.Scalar(self)
         self.show_LogicalEditor = LogicalEdit.Logical(self)
+        self.show_DimensionalEditor = DimensionalEdit.Dimensional(self)
 
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.takeFeaturesFromClass)
         self.button_goBack_classFeatureDefinition.clicked.connect(self.goto_return)
@@ -67,15 +69,19 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
 
     def goto_LogicalEdit(self):
         self.show_LogicalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
-                                    db.getIdFeatureClass_pairByClassNameFeatureName(
-                                        self.comboBox_featureChoose_classFeatureDefinition.currentText(),
-                                        self.comboBox_classChoose_classFeatureDefinition.currentText()))
+                                     db.getIdFeatureClass_pairByClassNameFeatureName(
+                                         self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                         self.comboBox_classChoose_classFeatureDefinition.currentText()))
         self.show_LogicalEditor.show()
         self.hide()
 
-
     def goto_DimensionalEdit(self):
-        print()
+        self.show_DimensionalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                         db.getIdFeatureClass_pairByClassNameFeatureName(
+                                             self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                             self.comboBox_classChoose_classFeatureDefinition.currentText()))
+        self.show_DimensionalEditor.show()
+        self.hide()
 
     def unsetFeatureDef(self):
         print()
