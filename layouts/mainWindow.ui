@@ -26,7 +26,7 @@
    <string>Классификатор элетротехники</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -56,7 +56,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Определить класс электротехники</string>
+        <string>Проверить полноту и продолжить</string>
        </property>
       </widget>
      </item>

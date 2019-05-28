@@ -12,6 +12,8 @@ class Ui_checkOfFullness(object):
     def setupUi(self, checkOfFullness):
         checkOfFullness.setObjectName("checkOfFullness")
         checkOfFullness.resize(387, 300)
+        checkOfFullness.setMinimumSize(QtCore.QSize(387, 300))
+        checkOfFullness.setMaximumSize(QtCore.QSize(387, 300))
         self.text_checkFullness = QtWidgets.QTextBrowser(checkOfFullness)
         self.text_checkFullness.setGeometry(QtCore.QRect(30, 20, 321, 181))
         font = QtGui.QFont()

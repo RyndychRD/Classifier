@@ -3,12 +3,14 @@ from PyQt5.QtWidgets import QMessageBox
 
 import layouts.checkOfFullness as design
 import connectionToDatabase as db
+import detectClass.detectClassInputFeatures as next
 
 
 class checkFullness(QtWidgets.QMainWindow, design.Ui_checkOfFullness):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
+        self.show_next = next.detectClassInputFeatures(self)
 
         self.button_ok_checkFullness.hide()
         self.button_goBack_checkFullness.clicked.connect(self.goto_return)
@@ -38,7 +40,9 @@ class checkFullness(QtWidgets.QMainWindow, design.Ui_checkOfFullness):
             self.button_ok_checkFullness.show()
 
     def goto_next(self):
-        print();
+        self.show_next.inst()
+        self.show_next.show()
+        self.hide()
 
     def goto_return(self):
         self.parent().show()
