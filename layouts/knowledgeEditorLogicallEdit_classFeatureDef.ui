@@ -64,10 +64,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>371</width>
-     <height>191</height>
+     <x>10</x>
+     <y>10</y>
+     <width>404</width>
+     <height>171</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -79,27 +79,24 @@
        </font>
       </property>
       <property name="text">
-       <string>Введите значение ИСТИНЫ</string>
+       <string>Выберите допустимые логические
+ значения</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="line_true_logicalEdit"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
+     <widget class="QCheckBox" name="checkBox_true">
       <property name="text">
-       <string>Введите значение ЛЖИ</string>
+       <string>CheckBox</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="line_false_logicalEdit"/>
+     <widget class="QCheckBox" name="checkBox_false">
+      <property name="text">
+       <string>CheckBox</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
