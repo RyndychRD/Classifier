@@ -27,6 +27,8 @@ class Logical(QtWidgets.QMainWindow, design.Ui_logicalEdit):
         self.checkBox_false.setText(lineFalse)
         self.checkBox_true.setText(lineTrue)
         db.deleteLogical_FeatureClass_pair(self.idFeatureClass)
+    def deleteFeature(self):
+        db.deleteLogical_FeatureClass_pair(self.idFeatureClass)
 
     def save_return(self):
         if not self.checkBox_false.isChecked() and not self.checkBox_true.isChecked():

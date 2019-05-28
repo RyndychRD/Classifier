@@ -84,18 +84,40 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
         self.hide()
 
     def unsetFeatureDef(self):
-        print()
+        self.line_featureType_classFeatureDefinition.clear()
+        feature = self.comboBox_featureChoose_classFeatureDefinition.currentText()
+        featureType = db.takeTypeOfFeature(feature)
+        if featureType['Type'] == 1:
+            self.show_ScalarEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                        db.getIdFeatureClass_pairByClassNameFeatureName(
+                                            self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                            self.comboBox_classChoose_classFeatureDefinition.currentText()))
+        if featureType['Type'] == 2:
+            self.show_LogicalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                         db.getIdFeatureClass_pairByClassNameFeatureName(
+                                             self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                             self.comboBox_classChoose_classFeatureDefinition.currentText()))
+        if featureType['Type'] == 3:
+            self.show_DimensionalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                             db.getIdFeatureClass_pairByClassNameFeatureName(
+                                                 self.comboBox_featureChoose_classFeatureDefinition.currentText(),
+                                                 self.comboBox_classChoose_classFeatureDefinition.currentText()))
 
     def showSetFeature(self):
-
-        print("word")
+        print()
 
     def showUnSetFeature(self):
         self.text_featureUnset_classFeatureDefinition.clear()
+        self.text_featureSetted_classFeatureDefinition.clear()
         AllFeatures = self.takeFeaturesFromClass()
         if len(AllFeatures) > 0:
-            for row in AllFeatures:
-                self.text_featureUnset_classFeatureDefinition.append(row["NameFeature"])
+             for row in AllFeatures:
+                if db.isSet( db.getIdFeatureClass_pairByClassNameFeatureName(
+                                                 row["NameFeature"],
+                                                 self.comboBox_classChoose_classFeatureDefinition.currentText())):
+                    self.text_featureSetted_classFeatureDefinition.append(row["NameFeature"])
+                else:
+                    self.text_featureUnset_classFeatureDefinition.append(row["NameFeature"])
 
     #
     # if row["Type"] == 1:

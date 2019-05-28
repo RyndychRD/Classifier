@@ -954,3 +954,34 @@ def setDimensionalValue_FeatureClass_pair(idFeatureClass, minValue, maxValue):
         # Закрыть соединение (Close connection).
         connection.close()
         print("connect close")
+
+def isSet(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "select * from ClassDimensionalValue where Feature_Class_pair_idFeature_Class_pair ="+str(idFeatureClass)
+            cursor.execute(sql)
+            row1=cursor.fetchall()
+            sql = "select * from ClassLogicalValue where Feature_Class_pair_idFeature_Class_pair =" + str(
+                idFeatureClass)
+            cursor.execute(sql)
+            row2 = cursor.fetchall()
+            sql = "select * from ClassScalarlValue where Feature_Class_pair_idFeature_Class_pair =" + str(idFeatureClass)
+            cursor.execute(sql)
+            row3 = cursor.fetchall()
+
+            return len(row1)>0 or len(row2)>0 or len(row3)>0
+
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")

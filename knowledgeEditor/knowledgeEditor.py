@@ -47,7 +47,7 @@ class knowledgeEditor(QtWidgets.QMainWindow, design.Ui_knowledgeEditor):
         self.show_classFeatureDefinition.inst()
         self.show_classFeatureDefinition.show()
         self.hide()
-
+#TODO add normal deletion for delete and changing type of feature
     def goto_return(self):
         self.parent().show()
         self.close()

@@ -25,6 +25,8 @@ class Scalar(QtWidgets.QMainWindow, design.Ui_scalarEdit):
         db.deleteScalar_FeatureClass_pair(self.idFeatureClass)
         for x in scalar:
             self.listWidget_ScalarEdit.addItem(x["Value"])
+    def deleteFeature(self):
+        db.deleteScalar_FeatureClass_pair(self.idFeatureClass)
 
     def save_return(self):
         for item in self.listWidget_ScalarEdit.selectedItems():
