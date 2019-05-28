@@ -1,0 +1,12 @@
+0000000000000000000000000000000000000000 1da4160039933864be68d0745f2757a330b1073d RyndychRD <r.roman1234@yandex.ru> 1557166435 +1000	commit (initial): start
+1da4160039933864be68d0745f2757a330b1073d 7bc3c31151bf456d9af8c254797cd7fc2d68ab4d RyndychRD <r.roman1234@yandex.ru> 1557195451 +1000	commit: created ERR of database
+7bc3c31151bf456d9af8c254797cd7fc2d68ab4d ed6927a1ea87f68c9a371927c30471bba6abf4b9 RyndychRD <r.roman1234@yandex.ru> 1557195505 +1000	commit: create ERR of database
+ed6927a1ea87f68c9a371927c30471bba6abf4b9 9f134ea983e2d87802608dbc83bb09a1d4d3ce63 RyndychRD <r.roman1234@yandex.ru> 1557623588 +1000	commit: design and db
+9f134ea983e2d87802608dbc83bb09a1d4d3ce63 60fc9fe3e806b61c52cf8f92def6950a98f6f0ed RyndychRD <r.roman1234@yandex.ru> 1557632700 +1000	commit: commit
+60fc9fe3e806b61c52cf8f92def6950a98f6f0ed 9cf45ee11fc25f56a759dce4d69d8a47ce67eb6c RyndychRD <r.roman1234@yandex.ru> 1557648652 +1000	commit: feature add
+9cf45ee11fc25f56a759dce4d69d8a47ce67eb6c 08a98374f0be2ffee9148568b08088e7f1a132b6 RyndychRD <r.roman1234@yandex.ru> 1557657413 +1000	commit: featureDef add
+08a98374f0be2ffee9148568b08088e7f1a132b6 938513f1cf9c5d70045455809d0f219a979a2366 RyndychRD <r.roman1234@yandex.ru> 1557666931 +1000	commit: scalar edit
+938513f1cf9c5d70045455809d0f219a979a2366 acf241701f168d013669ddbe3b30f00201db1d0f RyndychRD <r.roman1234@yandex.ru> 1557672415 +1000	commit: possible def done
+acf241701f168d013669ddbe3b30f00201db1d0f 18bf69b41dd0b11b8cd13e166a8a96018efd5936 RyndychRD <r.roman1234@yandex.ru> 1558431701 +1000	commit: t
+18bf69b41dd0b11b8cd13e166a8a96018efd5936 1900844331f7b1667ac1d593d09ccd589fc60b73 RyndychRD <r.roman1234@yandex.ru> 1559043936 +1000	commit: class explanation add
+1900844331f7b1667ac1d593d09ccd589fc60b73 1900844331f7b1667ac1d593d09ccd589fc60b73 RyndychRD <r.roman1234@yandex.ru> 1559044262 +1000	reset: moving to HEAD

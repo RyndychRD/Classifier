@@ -586,19 +586,18 @@ def takeFeautureFromClass_classExplanation(className):
     try:
         with connection.cursor() as cursor:
 
-
             # SQL
             sqlForeignKeyClass = "select idClasses from Classes where Class = '" + className + "'"
             # cursor.execute(sqlForeignKeyClass)
 
-            sql = "Select Feature_idFeature From Feature_Class_pair where Classes_idClasses = ("+sqlForeignKeyClass+")"
+            sql = "Select Feature_idFeature From Feature_Class_pair where Classes_idClasses = (" + sqlForeignKeyClass + ")"
             cursor.execute(sql)
-            features=cursor.fetchall()
+            features = cursor.fetchall()
 
-            result=[]
+            result = []
 
             for row in features:
-                sql="Select NameFeature from Feature where idFeature = "+row["Feature_idFeature"]
+                sql = "Select * from Feature where idFeature = " + str(row["Feature_idFeature"])
                 cursor.execute(sql)
                 result.append(cursor.fetchone())
 
@@ -606,6 +605,29 @@ def takeFeautureFromClass_classExplanation(className):
 
 
 
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def showAllFeatures_classExplanation():
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = 'select * from Feature where Type is not null'
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            return rows
 
     except Exception as e:
         print("Exeception occured:{}".format(e))

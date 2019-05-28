@@ -15,7 +15,7 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
         self.featureToDelete = []
         self.inst()
 
-        self.takeAllFeatures()
+        # self.takeAllFeatures()
 
         self.comboBox_classChoose_classExplanation.activated.connect(self.takeFeatureFromClass)
         self.button_goBack_classExplanation.clicked.connect(self.goto_return)
@@ -23,6 +23,7 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
         self.button_addAllFeatures_classExplanation.clicked.connect(self.addAllFeatures)
         self.button_deleteAllFeatures_classExplanation.clicked.connect(self.deleteAllFeatures)
         self.button_deleteFeature_classExplanation.clicked.connect(self.deleteFeature)
+        self.button_ok_classExplanation.clicked.connect(self.goto_return)
 
     def goto_return(self):
         self.parent().show()
@@ -33,6 +34,8 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
         self.comboBox_classChoose_classExplanation.clear()
         for row in rows:
             self.comboBox_classChoose_classExplanation.addItem(row["Class"])
+        self.comboBox_classChoose_classExplanation.setCurrentText(rows[0]["Class"])
+        self.takeFeatureFromClass()
 
     def updateData(self, featuresToAdd, featuresToDelete):
         self.comboBox_addFeature_classExplanation.clear()
@@ -45,45 +48,52 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
             self.comboBox_deleteFeature_classExplanation.addItem(row["NameFeature"])
             self.text_featuresList_classExplanation.append(row["NameFeature"])
 
-
-
-    def takeAllFeatures(self):
-        self.featuresAll = db.showAllFeatures()
-        self.featureToAdd = self.featuresAll
-        self.updateData(self.featureToAdd, self.featureToDelete)
-
-
-    def addFeature(self):
+    def addFeature(self, featureName=""):
         className = self.comboBox_classChoose_classExplanation.currentText()
-        featureName = self.comboBox_addFeature_classExplanation.currentText()
+        if not featureName:
+            featureName = self.comboBox_addFeature_classExplanation.currentText()
         db.addFeatureToClass_classExplanation(featureName, className)
 
         for row in self.featureToAdd:
             if row["NameFeature"] == featureName:
                 self.featureToDelete.append(row)
                 self.featureToAdd.remove(row)
-        self.updateData(self.featureToAdd,self.featureToDelete)
+        self.updateData(self.featureToAdd, self.featureToDelete)
 
-    def deleteFeature(self):
+    def deleteFeature(self, featureName=""):
         className = self.comboBox_classChoose_classExplanation.currentText()
-        featureName = self.comboBox_deleteFeature_classExplanation.currentText()
-        db.deleteFeatureFromClass_classExplanation(featureName,className)
+        if not featureName:
+            featureName = self.comboBox_deleteFeature_classExplanation.currentText()
+        db.deleteFeatureFromClass_classExplanation(featureName, className)
 
         for row in self.featureToDelete:
             if row["NameFeature"] == featureName:
                 self.featureToAdd.append(row)
                 self.featureToDelete.remove(row)
-        self.updateData(self.featureToAdd,self.featureToDelete)
+        self.updateData(self.featureToAdd, self.featureToDelete)
 
     def takeFeatureFromClass(self):
-        featuresToDelete=db.takeFeautureFromClass_classExplanation(self.comboBox_classChoose_classExplanation.currentText())
-        self.takeAllFeatures()
-        if len(featuresToDelete)>0:
-            self.featureToAdd=list(set(self.featureToAdd)-set(featuresToDelete))
-        self.updateData(self.featureToAdd,featuresToDelete)
+        self.featureToDelete = db.takeFeautureFromClass_classExplanation(
+            self.comboBox_classChoose_classExplanation.currentText())
+        self.featureToAdd = db.showAllFeatures_classExplanation()
+        if len(self.featureToDelete) > 0:
+            for x in self.featureToDelete:
+                if x in self.featureToAdd:
+                    self.featureToAdd.remove(x)
+        self.updateData(self.featureToAdd, self.featureToDelete)
 
     def addAllFeatures(self):
-        print()
+        self.takeFeatureFromClass()
+        featureTemp = []
+        for x in self.featureToAdd:
+            featureTemp += {x["NameFeature"]}
+        for x in featureTemp:
+            self.addFeature(x)
 
     def deleteAllFeatures(self):
-        print()
+        self.takeFeatureFromClass()
+        featureTemp = []
+        for x in self.featureToDelete:
+            featureTemp += {x["NameFeature"]}
+        for x in featureTemp:
+            self.deleteFeature(x)
