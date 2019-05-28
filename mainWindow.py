@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets
 import layouts.mainWindow as design
 
 import knowledgeEditor.knowledgeEditor as knowledgeEditor
+import detectClass.checkFullness as checkFullness
 
 
 class mainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
@@ -11,17 +12,19 @@ class mainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.show_knowledgeEditor = knowledgeEditor.knowledgeEditor(self)
+        self.show_checkFullness=checkFullness.checkFullness(self)
 
         self.buton_knowledgeEditor_MainWindow.clicked.connect(self.goto_knowledgeEditor)
+        self.button_detectClass_MainWindow.clicked.connect(self.goto_checkFullness)
 
     def goto_knowledgeEditor(self):
         self.show_knowledgeEditor.show()
         self.hide()
 
-
-
-    def goto_detectClass(self):
-        print("detectClass")
+    def goto_checkFullness(self):
+        self.show_checkFullness.checkFullness()
+        self.show_checkFullness.show()
+        self.hide()
 
 
 

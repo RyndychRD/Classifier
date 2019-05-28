@@ -28,18 +28,22 @@ class knowledgeEditor(QtWidgets.QMainWindow, design.Ui_knowledgeEditor):
         self.button_classFeatureDefinition_knowledgeEditor.clicked.connect(self.goto_classFeatureDefinition)
 
     def goto_classExplanation(self):
+        self.show_classExplanation.inst()
         self.show_classExplanation.show()
         self.hide()
 
     def goto_featurePossibleDef(self):
+        self.show_featurePossibleDef.inst()
         self.show_featurePossibleDef.show()
         self.hide()
 
     def goto_classEditor(self):
+        self.show_classEditor.updateData()
         self.show_classEditor.show()
         self.hide()
 
     def goto_featureEditor(self):
+        self.show_featureEditor.updateData()
         self.show_featureEditor.show()
         self.hide()
 
@@ -47,7 +51,7 @@ class knowledgeEditor(QtWidgets.QMainWindow, design.Ui_knowledgeEditor):
         self.show_classFeatureDefinition.inst()
         self.show_classFeatureDefinition.show()
         self.hide()
-#TODO add normal deletion for delete and changing type of feature
+
     def goto_return(self):
         self.parent().show()
         self.close()

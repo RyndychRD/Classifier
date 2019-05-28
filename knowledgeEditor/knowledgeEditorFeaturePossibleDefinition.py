@@ -13,9 +13,8 @@ class featurePossibleDefinition(QtWidgets.QMainWindow, design.Ui_featurePossible
         super().__init__(parent)
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
-        for row in self.getAllFeatures():
-            self.comboBox_featureChoose_featurePossibleDefinition.addItem(row["NameFeature"])
-        self.typeCheckAndPut(self.comboBox_featureChoose_featurePossibleDefinition.currentText())
+        self.inst()
+
         self.show_Logical_featurePossibleDef = Logical.Logical(self)
         self.show_Dimensional_featurePossibleDef = Dimensional.Dimensional(self)
         self.show_Scalar_featurePossibleDef = Scalar.Scalar(self)
@@ -23,6 +22,12 @@ class featurePossibleDefinition(QtWidgets.QMainWindow, design.Ui_featurePossible
         self.button_goBack_featurePossibleDefinition.clicked.connect(self.goto_return)
         self.button_Ok_featurePossibleDefinition.clicked.connect(self.okButtonPressed)
         self.comboBox_featureChoose_featurePossibleDefinition.activated[str].connect(self.typeCheckAndPut)
+
+    def inst(self):
+        self.comboBox_featureChoose_featurePossibleDefinition.clear()
+        for row in self.getAllFeatures():
+            self.comboBox_featureChoose_featurePossibleDefinition.addItem(row["NameFeature"])
+        self.typeCheckAndPut(self.comboBox_featureChoose_featurePossibleDefinition.currentText())
 
     def typeCheckAndPut(self, text):
         answer = db.getTypeAlreadySelect(text)

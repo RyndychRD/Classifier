@@ -34,7 +34,8 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
         self.comboBox_classChoose_classExplanation.clear()
         for row in rows:
             self.comboBox_classChoose_classExplanation.addItem(row["Class"])
-        self.comboBox_classChoose_classExplanation.setCurrentText(rows[0]["Class"])
+        if self.comboBox_classChoose_classExplanation.count()>0:
+            self.comboBox_classChoose_classExplanation.setCurrentText(rows[0]["Class"])
         self.takeFeatureFromClass()
 
     def updateData(self, featuresToAdd, featuresToDelete):
@@ -44,21 +45,22 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
 
         self.comboBox_deleteFeature_classExplanation.clear()
         self.text_featuresList_classExplanation.clear()
-        for row in featuresToDelete:
-            self.comboBox_deleteFeature_classExplanation.addItem(row["NameFeature"])
-            self.text_featuresList_classExplanation.append(row["NameFeature"])
+        if not featuresToDelete == None:
+            for row in featuresToDelete:
+                self.comboBox_deleteFeature_classExplanation.addItem(row["NameFeature"])
+                self.text_featuresList_classExplanation.append(row["NameFeature"])
 
     def addFeature(self, featureName=""):
         className = self.comboBox_classChoose_classExplanation.currentText()
         if not featureName:
             featureName = self.comboBox_addFeature_classExplanation.currentText()
         db.addFeatureToClass_classExplanation(featureName, className)
-
-        for row in self.featureToAdd:
-            if row["NameFeature"] == featureName:
-                self.featureToDelete.append(row)
-                self.featureToAdd.remove(row)
-        self.updateData(self.featureToAdd, self.featureToDelete)
+        if not self.featureToAdd == None:
+            for row in self.featureToAdd:
+                if row["NameFeature"] == featureName:
+                    self.featureToDelete.append(row)
+                    self.featureToAdd.remove(row)
+            self.updateData(self.featureToAdd, self.featureToDelete)
 
     def deleteFeature(self, featureName=""):
         className = self.comboBox_classChoose_classExplanation.currentText()
@@ -66,21 +68,23 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
             featureName = self.comboBox_deleteFeature_classExplanation.currentText()
         db.deleteFeatureFromClass_classExplanation(featureName, className)
 
-        for row in self.featureToDelete:
-            if row["NameFeature"] == featureName:
-                self.featureToAdd.append(row)
-                self.featureToDelete.remove(row)
-        self.updateData(self.featureToAdd, self.featureToDelete)
+        if not self.featureToDelete==None:
+            for row in self.featureToDelete:
+                if row["NameFeature"] == featureName:
+                    self.featureToAdd.append(row)
+                    self.featureToDelete.remove(row)
+            self.updateData(self.featureToAdd, self.featureToDelete)
 
     def takeFeatureFromClass(self):
         self.featureToDelete = db.takeFeautureFromClass_classExplanation(
             self.comboBox_classChoose_classExplanation.currentText())
         self.featureToAdd = db.showAllFeatures_classExplanation()
-        if len(self.featureToDelete) > 0:
-            for x in self.featureToDelete:
-                if x in self.featureToAdd:
-                    self.featureToAdd.remove(x)
-        self.updateData(self.featureToAdd, self.featureToDelete)
+        if not self.featureToDelete == None:
+            if len(self.featureToDelete) > 0:
+                for x in self.featureToDelete:
+                    if x in self.featureToAdd:
+                        self.featureToAdd.remove(x)
+            self.updateData(self.featureToAdd, self.featureToDelete)
 
     def addAllFeatures(self):
         self.takeFeatureFromClass()
