@@ -30,7 +30,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>50</y>
+      <y>20</y>
       <width>411</width>
       <height>55</height>
      </rect>
@@ -87,25 +87,6 @@
     </property>
     <property name="text">
      <string>ОК</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="button_featureSet_classFeatureDefinition">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>147</y>
-      <width>110</width>
-      <height>52</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Установить
- значение</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -174,7 +155,7 @@
     <property name="geometry">
      <rect>
       <x>42</x>
-      <y>140</y>
+      <y>110</y>
       <width>411</width>
       <height>61</height>
      </rect>
@@ -201,7 +182,7 @@
     <property name="geometry">
      <rect>
       <x>462</x>
-      <y>145</y>
+      <y>115</y>
       <width>181</width>
       <height>55</height>
      </rect>
@@ -223,6 +204,42 @@
       <widget class="QLineEdit" name="line_featureType_classFeatureDefinition">
        <property name="readOnly">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>42</x>
+      <y>174</y>
+      <width>721</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_featureSet_classFeatureDefinition_2">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Установить значение</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_featureUnSet_classFeatureDefinition">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Удалить значение</string>
        </property>
       </widget>
      </item>

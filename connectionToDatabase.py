@@ -636,3 +636,50 @@ def showAllFeatures_classExplanation():
         # Закрыть соединение (Close connection).
         connection.close()
         print("connect close")
+
+
+# ------------------------------------------------------------------
+
+def takeTypeOfFeature(feature):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = 'select Type from Feature where NameFeature = "'+feature+'"'
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            return row
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+def setFeatureValue(featureName, className):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = 'select Type from Feature where NameFeature = "'+featureName+'"'
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            return row
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
