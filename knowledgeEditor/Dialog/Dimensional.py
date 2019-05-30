@@ -28,7 +28,7 @@ class Dimensional(QtWidgets.QMainWindow, design.Ui_dimensionalEdit):
     def save_and_return(self):
         left = self.spinBox_start_dimensionalEdit.text()
         right = self.spinBox_end_dimensionalEdit.text()
-        if right <= left:
+        if float(right.replace(',', '.')) < float(left.replace(',', '.')):
             QMessageBox.question(self, "Error", " Right Value cannot be less then left (in case (left,right] too 8P )",
                                  QMessageBox.Cancel)
         ifLeftIncluded = self.check_MinValue_dimensionalEdit.isChecked()
@@ -40,4 +40,3 @@ class Dimensional(QtWidgets.QMainWindow, design.Ui_dimensionalEdit):
     def goto_return(self):
         QMessageBox.question(self, "Error", " You have to input values. No way back",
                              QMessageBox.Cancel)
-

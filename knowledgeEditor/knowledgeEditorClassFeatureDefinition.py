@@ -29,7 +29,7 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
 
     def inst(self):
         self.comboBox_classChoose_classFeatureDefinition.clear()
-        classes = db.showAllClasses()
+        classes = db.getAllClasses()
         for row in classes:
             self.comboBox_classChoose_classFeatureDefinition.addItem(row["Class"])
         if self.comboBox_classChoose_classFeatureDefinition.count() > 0:
@@ -40,7 +40,7 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
 
     def takeFeaturesFromClass(self):
         self.comboBox_featureChoose_classFeatureDefinition.clear()
-        features = db.takeFeautureFromClass_classExplanation(
+        features = db.getFeautureFromClass_classExplanation(
             self.comboBox_classChoose_classFeatureDefinition.currentText())
         if not features == None:
             if len(features) > 0:
@@ -86,24 +86,25 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
         self.hide()
 
     def unsetFeatureDef(self):
-        self.line_featureType_classFeatureDefinition.clear()
         feature = self.comboBox_featureChoose_classFeatureDefinition.currentText()
         featureType = db.takeTypeOfFeature(feature)
         if featureType['Type'] == 1:
-            self.show_ScalarEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
-                                        db.getIdFeatureClass_pairByClassNameFeatureName(
+            self.show_ScalarEditor.deleteFeature(db.getIdFeatureClass_pairByClassNameFeatureName(
                                             self.comboBox_featureChoose_classFeatureDefinition.currentText(),
                                             self.comboBox_classChoose_classFeatureDefinition.currentText()))
+            self.inst()
         if featureType['Type'] == 2:
             self.show_LogicalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
                                          db.getIdFeatureClass_pairByClassNameFeatureName(
                                              self.comboBox_featureChoose_classFeatureDefinition.currentText(),
                                              self.comboBox_classChoose_classFeatureDefinition.currentText()))
+            self.inst()
         if featureType['Type'] == 3:
             self.show_DimensionalEditor.inst(self.comboBox_featureChoose_classFeatureDefinition.currentText(),
                                              db.getIdFeatureClass_pairByClassNameFeatureName(
                                                  self.comboBox_featureChoose_classFeatureDefinition.currentText(),
                                                  self.comboBox_classChoose_classFeatureDefinition.currentText()))
+            self.inst()
 
     def showSetFeature(self):
         print()

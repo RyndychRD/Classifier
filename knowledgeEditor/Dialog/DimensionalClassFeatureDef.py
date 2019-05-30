@@ -28,15 +28,18 @@ class Dimensional(QtWidgets.QMainWindow, design.Ui_dimensionalEdit):
         self.spinbox_max.setMaximum(leftAndRight[1])
         db.deleteDimensionalValue_FeatureClass_pair(self.idFeatureClass)
 
+    def deleteFeature(self, idFeatureClass):
+        db.deleteDimensionalValue_FeatureClass_pair(idFeatureClass)
+
     def save_return(self):
-        left=self.spinbox_min.text()
-        right=self.spinbox_max.text()
-        if right <= left:
+        left = self.spinbox_min.text()
+        right = self.spinbox_max.text()
+        if float(right.replace(',', '.')) < float(left.replace(',', '.')):
             QMessageBox.question(self, "Error", " Right Value cannot be less then left (in case (left,right] too 8P )",
                                  QMessageBox.Cancel)
             return
 
-        db.setDimensionalValue_FeatureClass_pair(self.idFeatureClass, left, right )
+        db.setDimensionalValue_FeatureClass_pair(self.idFeatureClass, left, right)
         self.parent().showSetFeature()
         self.parent().showUnSetFeature()
         self.parent().show()

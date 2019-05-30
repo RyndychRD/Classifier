@@ -65,7 +65,7 @@ def getClassIdFromClassName(className):
         print("connect close")
 
 
-def showAllClasses():
+def getAllClasses():
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='root',
@@ -189,7 +189,7 @@ def getFeatureIdByFeatureName(feature):
         print("connect close")
 
 
-def showAllFeatures():
+def getAllFeatures():
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='root',
@@ -621,7 +621,7 @@ def deleteFeatureFromClass_classExplanation(featureName, className):
         print("connect close")
 
 
-def takeFeautureFromClass_classExplanation(className):
+def getFeautureFromClass_classExplanation(className):
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='root',
@@ -835,7 +835,10 @@ def getLogicalTrueFalse_FeatureClass_pair(featureId):
             sql = "Select * from LogicalValues where Feature_idFeature = " + str(featureId)
             cursor.execute(sql)
             row = cursor.fetchone()
-            return list(row["True_Value"] + row["False_Value"])
+            res=[]
+            res.append(row["True_Value"])
+            res.append(row["False_Value"])
+            return res
 
     except Exception as e:
         print("Exeception occured:{}".format(e))
@@ -1084,35 +1087,4 @@ def getAllScalar():
 
 
 # ----------------------------------------------------
-def getAllClassesAndFeatureDeff():
-    connection = pymysql.connect(host='127.0.0.1',
-                                 user='root',
-                                 password='root',
-                                 db='mydb',
-                                 cursorclass=pymysql.cursors.DictCursor)
-    print("connection established")
-    try:
-        with connection.cursor() as cursor:
-            sql = "Select * from Feature_Class_pair " \
-                  "left join Classes on" \
-                  " (Feature_Class_pair.Classes_idClasses=Classes.idClasses)" \
-                  " left Join Feature on " \
-                  "(Feature_Class_pair.Classes_idClasses=Feature.idFeature)" \
-                  "left join ClassDimensionalValue on" \
-                  "(Feature_Class_pair.idFeature_Class_pair = ClassDimensionalValue.Feature_Class_pair_idFeature_Class_pair)" \
-                  "left join ClassLogicalValue on" \
-                  "(Feature_Class_pair.idFeature_Class_pair = ClassLogicalValue.Feature_Class_pair_idFeature_Class_pair)" \
-                  "left join ClassScalarlValue on" \
-                  "(Feature_Class_pair.idFeature_Class_pair = ClassLogicalValue.Feature_Class_pair_idFeature_Class_pair)"
 
-            cursor.execute(sql)
-            rows = cursor.fetchall()
-            return rows
-
-    except Exception as e:
-        print("Exeception occured:{}".format(e))
-
-    finally:
-        # Закрыть соединение (Close connection).
-        connection.close()
-        print("connect close")

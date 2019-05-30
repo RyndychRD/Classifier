@@ -93,7 +93,7 @@ class featurePossibleDefinition(QtWidgets.QMainWindow, design.Ui_featurePossible
         self.hide()
 
     def getAllFeatures(self):
-        return db.showAllFeatures()
+        return db.getAllFeatures()
 
     def goto_return(self):
         self.parent().show()

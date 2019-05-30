@@ -65,7 +65,7 @@ class detectClassInputFeatures(QtWidgets.QMainWindow, design.Ui_inputFeatures):
         self.text_featuresList_inputFeatures.clear()
         self.featureToDelete.clear()
         self.featureToAdd=[]
-        self.AllFeatures = db.showAllFeatures()
+        self.AllFeatures = db.getAllFeatures()
         for x in self.AllFeatures:
             self.comboBox_addFeature_inputFeatures.addItem(x["NameFeature"])
         self.featureToAdd = self.AllFeatures

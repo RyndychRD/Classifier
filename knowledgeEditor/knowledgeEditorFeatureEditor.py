@@ -39,7 +39,7 @@ class featureEditor(QtWidgets.QMainWindow, design.Ui_featureEditor):
 
 
     def getAllFeatures(self):
-        return db.showAllFeatures()
+        return db.getAllFeatures()
 
     def showAllFeatures(self):
         rows = self.getAllFeatures()

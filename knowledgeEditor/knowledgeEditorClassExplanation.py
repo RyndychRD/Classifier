@@ -30,7 +30,7 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
         self.close()
 
     def inst(self):
-        rows = db.showAllClasses()
+        rows = db.getAllClasses()
         self.comboBox_classChoose_classExplanation.clear()
         for row in rows:
             self.comboBox_classChoose_classExplanation.addItem(row["Class"])
@@ -76,7 +76,7 @@ class classExplanation(QtWidgets.QMainWindow, design.Ui_classExplanation):
             self.updateData(self.featureToAdd, self.featureToDelete)
 
     def takeFeatureFromClass(self):
-        self.featureToDelete = db.takeFeautureFromClass_classExplanation(
+        self.featureToDelete = db.getFeautureFromClass_classExplanation(
             self.comboBox_classChoose_classExplanation.currentText())
         self.featureToAdd = db.showAllFeatures_classExplanation()
         if not self.featureToDelete == None:

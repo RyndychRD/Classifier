@@ -37,7 +37,7 @@ class classEditor(QtWidgets.QMainWindow, design.Ui_classEditor):
         self.updateData()
 
     def getAllClasses(self):
-        return db.showAllClasses()
+        return db.getAllClasses()
 
     def showAllClasses(self):
         rows = self.getAllClasses()
