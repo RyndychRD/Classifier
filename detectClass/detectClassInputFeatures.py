@@ -55,6 +55,10 @@ class detectClassInputFeatures(QtWidgets.QMainWindow, design.Ui_inputFeatures):
         self.updateData()
 
     def goto_next(self):
+        if len(self.featureToDelete) == 0:
+            QMessageBox.question(self, "Error", " You have to input values",
+                                 QMessageBox.Cancel)
+            return
         self.show_next.inst(self.featureToDelete)
         self.show_next.show()
         self.hide()
@@ -64,7 +68,7 @@ class detectClassInputFeatures(QtWidgets.QMainWindow, design.Ui_inputFeatures):
         self.comboBox_deleteFeature_inputFeatures.clear()
         self.text_featuresList_inputFeatures.clear()
         self.featureToDelete.clear()
-        self.featureToAdd=[]
+        self.featureToAdd = []
         self.AllFeatures = db.getAllFeatures()
         for x in self.AllFeatures:
             self.comboBox_addFeature_inputFeatures.addItem(x["NameFeature"])

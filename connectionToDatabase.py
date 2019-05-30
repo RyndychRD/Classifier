@@ -835,7 +835,7 @@ def getLogicalTrueFalse_FeatureClass_pair(featureId):
             sql = "Select * from LogicalValues where Feature_idFeature = " + str(featureId)
             cursor.execute(sql)
             row = cursor.fetchone()
-            res=[]
+            res = []
             res.append(row["True_Value"])
             res.append(row["False_Value"])
             return res
@@ -1088,3 +1088,73 @@ def getAllScalar():
 
 # ----------------------------------------------------
 
+def getClassFeatureDefById_Dimensional(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "Select * from ClassDimensionalValue where Feature_Class_pair_idFeature_Class_pair =" + str(
+                idFeatureClass)
+            cursor.execute(sql)
+            rows = cursor.fetchone()
+            return rows
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def getClassFeatureDefById_Logical(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "Select * from ClassLogicalValue where Feature_Class_pair_idFeature_Class_pair =" + str(
+                idFeatureClass)
+            cursor.execute(sql)
+            rows = cursor.fetchone()
+            return rows
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
+
+
+def getClassFeatureDefById_Scalar(idFeatureClass):
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "Select * from ClassScalarlValue where Feature_Class_pair_idFeature_Class_pair =" + str(
+                idFeatureClass)
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            return rows
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")

@@ -73,21 +73,14 @@ class detectClassSetFeatures(QtWidgets.QMainWindow, design.Ui_setFeature):
         self.comboBox_featureChoose_setFeature.clear()
         self.text_featureSet_setFeature.clear()
         self.text_featureUnset_setFeature.clear()
-        if listFeatures is not None:
-            if len(listFeatures) > 0:
-                for x in listFeatures:
-                    self.comboBox_featureChoose_setFeature.addItem(x["NameFeature"])
-                    self.text_featureUnset_setFeature.append(x["NameFeature"])
-                self.listFeatures = listFeatures
-                self.comboBox_featureChoose_setFeature.setCurrentText(listFeatures[0]["NameFeature"])
-                self.takeTypeOfFeature()
-            else:
-                QMessageBox.question(self, "Error", " You have to input values",
-                                     QMessageBox.Cancel)
 
-        else:
-            QMessageBox.question(self, "Error", " You have to input values",
-                                 QMessageBox.Cancel)
+        for x in listFeatures:
+            self.comboBox_featureChoose_setFeature.addItem(x["NameFeature"])
+            self.text_featureUnset_setFeature.append(x["NameFeature"])
+        self.listFeatures = listFeatures
+        self.comboBox_featureChoose_setFeature.setCurrentText(listFeatures[0]["NameFeature"])
+        self.takeTypeOfFeature()
+
 
     def takeTypeOfFeature(self):
         self.line_featureType_setFeature.clear()
