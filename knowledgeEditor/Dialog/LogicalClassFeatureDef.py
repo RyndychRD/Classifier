@@ -47,6 +47,7 @@ class Logical(QtWidgets.QMainWindow, design.Ui_logicalEdit):
         self.checkBox_false.setChecked(False)
         self.parent().showSetFeature()
         self.parent().showUnSetFeature()
+        self.parent().getValueOfFeature()
         self.parent().show()
         self.close()
 

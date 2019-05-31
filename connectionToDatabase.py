@@ -1085,7 +1085,27 @@ def getAllScalar():
         connection.close()
         print("connect close")
 
+def getAllLogical():
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='root',
+                                 db='mydb',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    print("connection established")
+    try:
+        with connection.cursor() as cursor:
+            sql = "Select True_Value, False_Value from LogicalValues"
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            return rows
 
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        # Закрыть соединение (Close connection).
+        connection.close()
+        print("connect close")
 # ----------------------------------------------------
 
 def getClassFeatureDefById_Dimensional(idFeatureClass):
@@ -1158,3 +1178,4 @@ def getClassFeatureDefById_Scalar(idFeatureClass):
         # Закрыть соединение (Close connection).
         connection.close()
         print("connect close")
+

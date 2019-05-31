@@ -56,7 +56,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Проверить полноту и продолжить</string>
+        <string>Проверить полноту и решить задачу</string>
        </property>
       </widget>
      </item>

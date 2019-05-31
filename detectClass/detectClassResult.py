@@ -23,15 +23,26 @@ class detectClassResult(QtWidgets.QMainWindow, design.Ui_result):
                 if x["Type"] == 1:
                     featurePairId = db.getIdFeatureClass_pairByClassNameFeatureName(currentFeature, oneClass["Class"])
                     featureDifFromClass = db.getClassFeatureDefById_Scalar(featurePairId)
-                    isThisClass = False
-                    for y in featureDifFromClass:
-                        if self.listFeaturesToCheck[currentFeature] == y["Value"]:
-                            isThisClass = True
-                            currentClass += 1
-                    if not isThisClass:
-                        self.text_impossibleClasses_result.append("Class " + oneClass["Class"] +
-                                                                  " is impossible because feature " + currentFeature +
-                                                                  " is not in scalar values for this class")
+                    if isThisClass:
+                        isThisClass = False
+                        for y in featureDifFromClass:
+                            if self.listFeaturesToCheck[currentFeature] == y["Value"]:
+                                isThisClass = True
+                                currentClass += 1
+                        if not isThisClass:
+                            self.text_impossibleClasses_result.append("Class " + oneClass["Class"] +
+                                                                      " is impossible because feature " + currentFeature +
+                                                                      " is not in scalar values for this class")
+                    else:
+                        isThisClassTemp=False
+                        for y in featureDifFromClass:
+                            if self.listFeaturesToCheck[currentFeature] == y["Value"]:
+                                isThisClassTemp = True
+                                currentClass += 1
+                        if not isThisClassTemp:
+                            self.text_impossibleClasses_result.append("Class " + oneClass["Class"] +
+                                                                      " is impossible because feature " + currentFeature +
+                                                                      " is not in scalar values for this class")
 
                 if x["Type"] == 2:
                     featurePairId = db.getIdFeatureClass_pairByClassNameFeatureName(currentFeature, oneClass["Class"])
@@ -77,6 +88,7 @@ class detectClassResult(QtWidgets.QMainWindow, design.Ui_result):
         self.text_impossibleClasses_result.clear()
         self.line_possibleClass_result.clear()
         self.listFeaturesToCheck = list
+        self.maxClass=0
         self.returnRes()
 
     def goto_return(self):

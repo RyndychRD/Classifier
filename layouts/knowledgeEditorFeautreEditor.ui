@@ -29,9 +29,9 @@
    <widget class="QPushButton" name="button_featureAdd_featureEditor">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>530</x>
       <y>80</y>
-      <width>241</width>
+      <width>261</width>
       <height>41</height>
      </rect>
     </property>
@@ -164,7 +164,7 @@
      <rect>
       <x>70</x>
       <y>90</y>
-      <width>461</width>
+      <width>451</width>
       <height>31</height>
      </rect>
     </property>

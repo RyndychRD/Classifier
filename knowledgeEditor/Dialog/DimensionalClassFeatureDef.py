@@ -42,6 +42,7 @@ class Dimensional(QtWidgets.QMainWindow, design.Ui_dimensionalEdit):
         db.setDimensionalValue_FeatureClass_pair(self.idFeatureClass, left, right)
         self.parent().showSetFeature()
         self.parent().showUnSetFeature()
+        self.parent().getValueOfFeature()
         self.parent().show()
         self.close()
 

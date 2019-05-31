@@ -36,45 +36,45 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
   </widget>
-  <widget class="QPushButton" name="button_ok_checkFullness">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>240</y>
-     <width>102</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>ОК</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_goBack_checkFullness">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>240</y>
-     <width>102</width>
-     <height>30</height>
+     <y>241</y>
+     <width>341</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Вернуться</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="button_goBack_checkFullness">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Вернуться</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="button_ok_checkFullness">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Решить задачу</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

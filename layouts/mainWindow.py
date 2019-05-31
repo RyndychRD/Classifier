@@ -50,5 +50,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Классификатор элетротехники"))
         self.buton_knowledgeEditor_MainWindow.setText(_translate("MainWindow", "Редактор знаний"))
-        self.button_detectClass_MainWindow.setText(_translate("MainWindow", "Проверить полноту и продолжить"))
+        self.button_detectClass_MainWindow.setText(_translate("MainWindow", "Проверить полноту и решить задачу"))
 

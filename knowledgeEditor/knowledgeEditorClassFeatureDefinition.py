@@ -21,6 +21,7 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.takeFeaturesFromClass)
         self.button_goBack_classFeatureDefinition.clicked.connect(self.goto_return)
         self.comboBox_featureChoose_classFeatureDefinition.activated.connect(self.takeTypeOfFeature)
+        self.comboBox_featureChoose_classFeatureDefinition.activated.connect(self.getValueOfFeature)
         self.button_ok_classFeatureDefinition.clicked.connect(self.goto_return)
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.showSetFeature)
         self.comboBox_classChoose_classFeatureDefinition.activated.connect(self.showUnSetFeature)
@@ -35,6 +36,7 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
         if self.comboBox_classChoose_classFeatureDefinition.count() > 0:
             self.comboBox_classChoose_classFeatureDefinition.setCurrentText(classes[0]["Class"])
         self.takeFeaturesFromClass()
+        self.getValueOfFeature()
         self.showSetFeature()
         self.showUnSetFeature()
 
@@ -130,6 +132,27 @@ class classFeatureDefinition(QtWidgets.QMainWindow, design.Ui_classFeatureDefini
     #     return 'Logical'
     # if row["Type"] == 3:
     #     return 'Dimensional'
+
+    def getValueOfFeature(self):
+        self.text_Definition.clear()
+        feature = self.comboBox_featureChoose_classFeatureDefinition.currentText()
+        className=self.comboBox_classChoose_classFeatureDefinition.currentText()
+        self.text_Definition.clear()
+        featureType = db.takeTypeOfFeature(feature)
+        idFeatureClass=db.getIdFeatureClass_pairByClassNameFeatureName(feature,className)
+        if featureType is not None:
+            if featureType['Type'] == 1:
+                values = db.getClassFeatureDefById_Scalar(idFeatureClass)
+                for x in values:
+                    self.text_Definition.append(x["Value"])
+
+            if featureType['Type'] == 2:
+                values = db.getClassFeatureDefById_Logical(idFeatureClass)
+                self.text_Definition.append("True value:=" + str(values["True_Value"]))
+                self.text_Definition.append("False value:=" + str(values["False_Value"]))
+            if featureType['Type'] == 3:
+                values = db.getClassFeatureDefById_Dimensional(idFeatureClass)
+                self.text_Definition.append(str(values["LeftValue"])+" <= Value for class <= " +str(values["RightValue"]))
 
     def takeTypeOfFeature(self):
         self.line_featureType_classFeatureDefinition.clear()

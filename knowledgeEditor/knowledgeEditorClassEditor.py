@@ -26,6 +26,7 @@ class classEditor(QtWidgets.QMainWindow, design.Ui_classEditor):
         self.updateData()
 
     def updateData(self):
+        self.line_classAdd_classEditor.clear()
         self.comboBox_classDelete_classEditor.clear()
         for row in self.getAllClasses():
             self.comboBox_classDelete_classEditor.addItem(row["Class"])

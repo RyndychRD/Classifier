@@ -12,7 +12,7 @@ class detectClassSetFeatures(QtWidgets.QMainWindow, design.Ui_setFeature):
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.listFeatures = []
         self.featureSet = {}
-        self.show_next=next.detectClassResult(self);
+        self.show_next = next.detectClassResult(self);
 
         self.button_goBack_setFeature.clicked.connect(self.goto_return)
         self.comboBox_featureChoose_setFeature.activated.connect(self.takeTypeOfFeature)
@@ -26,14 +26,17 @@ class detectClassSetFeatures(QtWidgets.QMainWindow, design.Ui_setFeature):
             return d
 
     def goto_next(self):
+        if len(self.featureSet)==0:
+            QMessageBox.question(self, "Error", " You have to input 1 or more value",
+                                 QMessageBox.Cancel)
+            return
         self.show_next.inst(self.featureSet)
         self.show_next.show()
         self.hide()
 
     def getChoice(self):
-        res = db.getAllScalar()
+        res = db.showAllScalarFeatureDef(self.comboBox_featureChoose_setFeature.currentText())
         items = ()
-        print(res)
         for x in res:
             items += (x["Value"],)
         items = list(set(items))
@@ -41,10 +44,17 @@ class detectClassSetFeatures(QtWidgets.QMainWindow, design.Ui_setFeature):
         if okPressed and item:
             return item
 
-    def getText(self):
-        text, okPressed = QInputDialog.getText(self, "Get true or false", "True or false:", QLineEdit.Normal, "")
-        if okPressed and text is not "":
-            return text
+    def getChoiceLogical(self):
+        res = db.getAllLogical()
+        items = ()
+        for x in res:
+            items += (x["True_Value"],)
+            items += (x["False_Value"],)
+
+        items = list(set(items))
+        item, okPressed = QInputDialog.getItem(self, "Get item for logical value", "Value:", items, 0, False)
+        if okPressed and item:
+            return item
 
     def setFeature(self):
         feature = self.comboBox_featureChoose_setFeature.currentText()
@@ -54,7 +64,7 @@ class detectClassSetFeatures(QtWidgets.QMainWindow, design.Ui_setFeature):
         if featureType['Type'] == 1:
             self.featureSet[feature] = self.getChoice()
         if featureType['Type'] == 2:
-            self.featureSet[feature] = self.getText()
+            self.featureSet[feature] = self.getChoiceLogical()
         if featureType['Type'] == 3:
             self.featureSet[feature] = self.getDouble()
 
@@ -80,7 +90,6 @@ class detectClassSetFeatures(QtWidgets.QMainWindow, design.Ui_setFeature):
         self.listFeatures = listFeatures
         self.comboBox_featureChoose_setFeature.setCurrentText(listFeatures[0]["NameFeature"])
         self.takeTypeOfFeature()
-
 
     def takeTypeOfFeature(self):
         self.line_featureType_setFeature.clear()

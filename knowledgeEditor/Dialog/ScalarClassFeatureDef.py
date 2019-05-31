@@ -35,6 +35,7 @@ class Scalar(QtWidgets.QMainWindow, design.Ui_scalarEdit):
         self.listWidget_ScalarEdit.clear()
         self.parent().showSetFeature()
         self.parent().showUnSetFeature()
+        self.parent().getValueOfFeature()
         self.parent().show()
         self.close()
 
